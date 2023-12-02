@@ -31,30 +31,34 @@ st.markdown("---") # Para separar el titulo de los KPIs, se inserta un paragrafo
 st.image("Imagen.jpg", use_column_width=True, width=None)
 st.markdown("---") # Para separar el titulo de los KPIs, se inserta un paragrafo usando un campo de markdown
 #4° Insertar música: Sin que esta se pare...
-# Función para cargar y reproducir música en un hilo separado
-def play_music(file_path, music_state):
-    pygame.mixer.init()
-    pygame.mixer.music.load(file_path)
-    while music_state["playing"]:
-        pygame.mixer.music.play()
-        time.sleep(pygame.mixer.music.get_length())
-    pygame.mixer.music.stop()
+audio1=open("Music.mp3","rb")
+st.write("<REPRODUCEME 🎧🎵>")
+st.audio(audio1)
 
-# Ruta al archivo de música
-music_file_path = "music.mp3"
+# # # # # Función para cargar y reproducir música en un hilo separado
+# # # # def play_music(file_path, music_state):
+# # # #     pygame.mixer.init()
+# # # #     pygame.mixer.music.load(file_path)
+# # # #     while music_state["playing"]:
+# # # #         pygame.mixer.music.play()
+# # # #         time.sleep(pygame.mixer.music.get_length())
+# # # #     pygame.mixer.music.stop()
 
-# Crear un diccionario para almacenar el estado de la música
-music_state = {"playing": False}
+# # # # # Ruta al archivo de música
+# # # # music_file_path = "music.mp3"
 
-# Almacenar el estado de la música en la sesión de Streamlit
-if "music_state" not in st.session_state:
-    st.session_state.music_state = music_state
+# # # # # Crear un diccionario para almacenar el estado de la música
+# # # # music_state = {"playing": False}
 
-# Iniciar la música al cargar la aplicación
-if not st.session_state.music_state["playing"]:
-    st.session_state.music_state["playing"] = True
-    music_thread = threading.Thread(target=play_music, args=(music_file_path, st.session_state.music_state), daemon=True)
-    music_thread.start()
+# # # # # Almacenar el estado de la música en la sesión de Streamlit
+# # # # if "music_state" not in st.session_state:
+# # # #     st.session_state.music_state = music_state
+
+# # # # # Iniciar la música al cargar la aplicación
+# # # # if not st.session_state.music_state["playing"]:
+# # # #     st.session_state.music_state["playing"] = True
+# # # #     music_thread = threading.Thread(target=play_music, args=(music_file_path, st.session_state.music_state), daemon=True)
+# # # #     music_thread.start()
 
 
 # Menú lateral con las pestañas
@@ -66,7 +70,7 @@ with st.container():
     indice_mensaje = st.session_state.get('indice_mensaje', -1)
     
     # Botón Next
-    if st.button("Next >"):
+    if st.button("Next=>"):
         # Incrementar el índice para mostrar el siguiente mensaje
         indice_mensaje = (indice_mensaje + 1) % len(mensajes)
         st.session_state.indice_mensaje = indice_mensaje
@@ -82,4 +86,4 @@ with st.container():
             if i + 1 < indice_mensaje + 1:
                 st.warning(mensajes[i + 1])
     
-    st.write("[Live Video >](https://www.youtube.com/watch?v=VAiHHUMUp-4)")
+    # st.write("[Live Video >](https://www.youtube.com/watch?v=VAiHHUMUp-4)")
