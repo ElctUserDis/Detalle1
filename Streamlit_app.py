@@ -28,7 +28,10 @@ st.markdown("---") # Para separar el titulo de los KPIs, se inserta un paragrafo
 
 # Arreglo de 1x2 para las imágenes
 
-st.image("Imagen.jpg", use_column_width=True, width=None)
+col1, col2, col3 = st.columns([1,5,1]) #Centrar el botón
+with col2:
+    st.image("Imagen.jpg", use_column_width=True, width=None)
+
 st.markdown("---") # Para separar el titulo de los KPIs, se inserta un paragrafo usando un campo de markdown
 #4° Insertar música: Sin que esta se pare...
 audio1=open("Music.mp3","rb")
